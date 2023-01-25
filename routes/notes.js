@@ -1,4 +1,6 @@
 const notes = require('express').Router();
+//id package
+const { v4: uuidv4 } = require('uuid');
 //import helpers from fs util
 const { readFromFile, readAndAppend } = require('../helpers/fsUtils');
 
@@ -17,7 +19,8 @@ notes.post('/', (req, res) => {
         // make note object
         const note = {
             title,
-            text
+            text,
+            id: uuidv4()
         };
 
         //pass note into db
